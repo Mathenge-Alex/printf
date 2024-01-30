@@ -8,6 +8,7 @@ int _printf(const char *format, ...);
 int print_char(va_list args);
 int print_string(va_list args);
 int print_percent(void);
-int _print_int(va_list argus)
+int _print_int(va_list argus);
+int _putchar(char c);
 
 #endif /* MAIN_H */
