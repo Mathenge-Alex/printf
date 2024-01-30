@@ -10,5 +10,5 @@ int print_string(va_list args);
 int print_percent(void);
 int _print_int(va_list argus);
 int _putchar(char c);
-
+int print_int(int n);
 #endif /* MAIN_H */
