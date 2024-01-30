@@ -3,40 +3,42 @@
 /**
 * print_int - Prints integer.
 * @num: The integer being printed
-* Return: Number of characters printed.
+* Return: Number of being characters printed.
 */
-int print_int(int num)
+int_print_int(va_list argus)
 {
-	char num_str[12];
+	int n = va_arg(argus, int);
+	int num, last = n % 10, digit, exp =1;
+	int k = 1;
 
-	int i = 0, j, count = 0;
+	n = n /10;
+	num = n;
 
-	int is_negative = num < 0;
-
-	unsigned int n = is_negative ? -num : num;
-
-	if (num == 0)
+	if (last < 0)
 	{
-		write(1, "0", 1);
-		return (1);
+		_putchar('-');
+		num = -num;
+		n = -n;
+		last = -last;
+		k++;
 	}
-
-	while (n > 0)
+	if (num > 0)
 	{
-		num_str[i++] = (n % 10) + '0';
-		n /= 10;
+		while (num / 10 != 0)
+		{
+			exp = exp * 10;
+			num = num / 10;
+		}
+		num = n;
+		while (exp > 0)
+		{
+			digit = num / exp;
+			_putchar(digit + '0');
+			num = num -(digit * exp);
+			exp = exp / 10;
+			k++;
+		}
 	}
-
-	if (is_negative)
-	{
-		num_str[i++] = '-';
-	}
-
-	for (j = i - 1; j >= 0; j--, count++)
-	{
-		write(1, &num_str[j], 1);
-	}
-
-	return (count);
+	_putchar(last + '0');
+	return (k);
 }
-
