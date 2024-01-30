@@ -1,4 +1,4 @@
-#include <maim.h>
+#include <unistd.h>
 
 /**
  * _putchar - writes char c stdout
