@@ -47,3 +47,50 @@ int print_percent(void)
 	return (1);
 }
 
+/**
+* _printf - A custom printf function that outputs format string to stdout.
+* @format: The format string that contains specifiers and characters.
+* Return: Returns number of characters printed.
+*/
+int _printf(const char *format, ...)
+{
+	va_list args;
+	int count = 0;
+
+	int i;
+
+	va_start(args, format);
+
+	for (i = 0; format && format[i]; i++)
+	{
+		if (format[i] == '%' && format[i + 1])
+		{
+			i++; /* Skipping the '%' character */
+			switch (format[i])
+			{
+				case 'c':
+					count += print_char(args);
+					break;
+				case 's':
+					count += print_string(args);
+					break;
+				case '%':
+					count += print_percent();
+					break;
+				default: /* Unknown format specifiers handling*/
+					write(1, &format[i - 1], 1);
+					write(1, &format[i], 1);
+					count += 2;
+					break;
+			}
+		}
+		else
+		{
+			write(1, &format[i], 1);
+			count++;
+		}
+	}
+
+	va_end(args);
+	return (count);
+}
