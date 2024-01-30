@@ -3,15 +3,16 @@
 /**
 * print_int - Prints integer.
 * @num: The integer being printed
+* @argus: arguments passed
 * Return: Number of being characters printed.
 */
-int_print_int(va_list argus)
+int _print_int(va_list argus)
 {
 	int n = va_arg(argus, int);
-	int num, last = n % 10, digit, exp =1;
+	int num, last = n % 10, digit, exp = 1;
 	int k = 1;
 
-	n = n /10;
+	n = n / 10;
 	num = n;
 
 	if (last < 0)
@@ -34,7 +35,7 @@ int_print_int(va_list argus)
 		{
 			digit = num / exp;
 			_putchar(digit + '0');
-			num = num -(digit * exp);
+			num = num - (digit * exp);
 			exp = exp / 10;
 			k++;
 		}
