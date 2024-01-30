@@ -12,4 +12,5 @@ int _print_int(va_list argus);
 int _putchar(char c);
 int print_int(int n);
 int print_strn(char *c);
+int print_rvs(char *c);
 #endif /* MAIN_H */
