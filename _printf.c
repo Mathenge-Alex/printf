@@ -55,39 +55,48 @@ int print_percent(void)
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int count = 0;
+	int count = 0, write_count, i;
 
-	int i;
+	if (!format)
+		return (-1);
 
 	va_start(args, format);
 
-	for (i = 0; format && format[i]; i++)
+	for (i = 0; format[i]; i++)
 	{
 		if (format[i] == '%' && format[i + 1])
 		{
 			i++; /* Skipping the '%' character */
 			switch (format[i])
 			{
-				case 'c':
-					count += print_char(args);
-					break;
-				case 's':
-					count += print_string(args);
-					break;
-				case '%':
-					count += print_percent();
-					break;
-				default: /* Unknown format specifiers handling*/
-					write(1, &format[i - 1], 1);
-					write(1, &format[i], 1);
-					count += 2;
-					break;
+			case 'c':
+				count += print_char(args);
+				break;
+			case 's':
+				count += print_string(args);
+				break;
+			case '%':
+				count += print_percent();
+				break;
+			default:
+				write_count = write(1, &format[i - 1], 1);
+				if (write_count < 0)
+					return (-1);
+				count += write_count;
+
+				write_count = write(1, &format[i], 1);
+				if (write_count < 0)
+					return (-1);
+				count += write_count;
+				break;
 			}
 		}
 		else
 		{
-			write(1, &format[i], 1);
-			count++;
+			write_count = write(1, &format[i], 1);
+			if (write_count < 0)
+				return (-1);
+			count += write_count;
 		}
 	}
 
