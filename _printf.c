@@ -35,3 +35,15 @@ int print_string(va_list args)
 	return (i);
 }
 
+/**
+* print_percent - Prints a percent sign.
+* Return: Returns the number of characters printed.
+*/
+int print_percent(void)
+{
+	char percent = '%';
+
+	write(1, &percent, 1);
+	return (1);
+}
+
