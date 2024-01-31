@@ -19,11 +19,11 @@ int print_rot13(char *c)
 	{
 		for (k = 0 ; *(c + k) != '\0' ; k++)
 		{
-			for (z = 0 ; s1[p] != '\0' ; z++)
+			for (z = 0 ; p1[p] != '\0' ; z++)
 			{
 				if (*(c + k) == p1[z])
 				{
-					count += _putchar(p2[z])
+					count += _putchar(p2[z]);
 						break;
 				}
 			}
