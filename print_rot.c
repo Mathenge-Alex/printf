@@ -10,24 +10,34 @@ int print_rot13(char *c)
 {
 	int k;
 	int count = 0;
-	int z;
 	char p1[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ";
 	char p2[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm ";
 
-	if (c)
+	if (c == NULL)
+	{
+		return (0);
+	}
 
 	{
-		for (k = 0 ; *(c + k) != '\0' ; k++)
+		for (k = 0 ; c[k] != '\0' ; k++)
 		{
-			for (z = 0 ; p1[p] != '\0' ; z++)
+			int z;
+
+			for (z = 0 ; p1[z] != '\0' ; z++)
 			{
-				if (*(c + k) == p1[z])
+				if (c[k] == p1[z])
 				{
 					count += _putchar(p2[z]);
 						break;
 				}
 			}
-		}
+
+			if (p1[z] == '\0')
+
+			{
+				count += _putchar(c[k]);
 	}
-	return (count);
+}
+return (count);
+}
 }
